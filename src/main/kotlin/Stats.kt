@@ -9,15 +9,18 @@ object Stats {
     fun osProperties(os: OperatingSystem): Map<String, String> = buildMap {
         put("OS", "${os.family} ${os.versionInfo.version}")
         put("HostName", os.networkParams.hostName)
-        put("Uptime", readableTime(os.systemUptime))
+        put("UpTime", readableTime(os.systemUptime))
     }
 
     private fun readableTime(seconds: Long): String = buildString {
-        append(seconds / 3600)
+        val hour = seconds / 3600
+        append(hour)
         append("h ")
-        append(seconds % 3600 / 60)
+        val min = seconds % 3600 / 60
+        append(min)
         append("m ")
-        append(seconds % 3600 % 60)
+        val sec = seconds % 3600 % 60
+        append(sec)
         append("s")
     }
 
