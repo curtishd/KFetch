@@ -1,8 +1,9 @@
 package me.cdh
 
-import com.sun.jna.Platform
 import oshi.SystemInfo
 import picocli.CommandLine
+import kotlin.random.Random
+import kotlin.random.asJavaRandom
 import kotlin.system.exitProcess
 
 @CommandLine.Command(
@@ -22,10 +23,10 @@ object Main : Runnable {
     }
 
     override fun run() {
-        when {
-            Platform.isWindows() || Platform.isWindowsCE() -> printSnapshot(spec, AsciiArt.LAMBDA_SHUTTLE, fetchStats())
-            Platform.isMac() -> printSnapshot(spec, AsciiArt.TIE_FIGHTER, fetchStats())
-            Platform.isLinux() -> printSnapshot(spec, AsciiArt.CDH, fetchStats())
+        when(Random.asJavaRandom().nextInt(1,4)) {
+            1 -> printSnapshot(spec, AsciiArt.WINDOW, fetchStats())
+            2 -> printSnapshot(spec, AsciiArt.TIE_FIGHTER, fetchStats())
+            3 -> printSnapshot(spec, AsciiArt.LAMBDA_SHUTTLE, fetchStats())
         }
     }
 

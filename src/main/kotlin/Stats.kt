@@ -32,9 +32,7 @@ object Stats {
 
     fun hardwareProperties(hardware: HardwareAbstractionLayer): Map<String, String> = buildMap {
         put("CPU", hardware.processor.processorIdentifier.name)
-        val gpuInfo = hardware.graphicsCards.map(GraphicsCard::getName).toTypedArray().joinToString(separator = ",")
-        put("GPU", gpuInfo)
-
+        put("GPU", hardware.graphicsCards.map(GraphicsCard::getName).toTypedArray().joinToString(separator = ","))
         val ramUsed = 1.00 - (hardware.memory.available.toDouble() / hardware.memory.total.toDouble())
         put(
             "RAM", String.format(
