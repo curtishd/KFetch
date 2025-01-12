@@ -12,17 +12,7 @@ object Stats {
         put("UpTime", readableTime(os.systemUptime))
     }
 
-    private fun readableTime(seconds: Long): String = buildString {
-        val hour = seconds / 3600
-        append(hour)
-        append("h ")
-        val min = seconds % 3600 / 60
-        append(min)
-        append("m ")
-        val sec = seconds % 3600 % 60
-        append(sec)
-        append("s")
-    }
+    private fun readableTime(seconds: Long) = "${seconds / 3600}h ${seconds % 3600 / 60}m ${seconds % 3600 % 60}s"
 
     private fun bytesToReadableSize(bytes: Long): String {
         if (bytes < 1024) return "$bytes B"
